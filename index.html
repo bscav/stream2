@@ -1,18 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <style>
   html, body { margin:0; height:100%; background:#000; overflow:hidden; }
-  iframe { position:fixed; inset:0; width:100%; height:100%; border:0; }
+  /* Player is laid out at a fixed large size, then scaled down to fit the screen.
+     YouTube picks quality from the player's layout size, so this pushes it to HD
+     even when the TV's WebView reports a small viewport (e.g. 960x540). */
+  #wrap { position:fixed; top:0; left:0; transform-origin:0 0; }
+  #wrap iframe { width:100%; height:100%; border:0; display:block; }
+  /* Transparent layer keeps remote/D-pad focus in this page, not inside the iframe */
+  #shield { position:fixed; inset:0; z-index:2; }
+  #hint { position:fixed; z-index:3; bottom:5vh; left:50%; transform:translateX(-50%);
+          color:#fff; font:600 2.2vh sans-serif; background:rgba(0,0,0,.65);
+          padding:1vh 2vh; border-radius:1vh; display:none; }
 </style>
 </head>
 <body>
-<iframe
-  src="https://www.youtube.com/embed/LKEoaWP13V0?autoplay=1&controls=0&rel=0&modestbranding=1&playsinline=1"
-  referrerpolicy="strict-origin-when-cross-origin"
-  allow="autoplay; encrypted-media; fullscreen"
-  allowfullscreen></iframe>
-</body>
-</html>
+<div id="wrap"><div id="player"></div></div>
+<div id="shield" tabindex="0"></div>
+<div id="hint">Press OK to turn on sound</div>
+
+<script>
+  const VIDEO_ID = 'ojyjDjs7VsA';
+  const LAYOUT_W = 1920, LAYOUT_H = 1080;   // use 2560x1440 to push for 1440p
+
+  const wrap = document.getElementById('wrap');
+  const hint = document.getElementById('hint');
