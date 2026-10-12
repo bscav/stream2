@@ -1,28 +1,19 @@
 
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Stream</title>
 <style>
   html, body { margin:0; height:100%; background:#000; overflow:hidden; }
-  #wrap { position:fixed; top:0; left:0; width:1920px; height:1080px; transform-origin:0 0; }
-  #wrap iframe { width:100%; height:100%; border:0; display:block; }
+  iframe { position:fixed; inset:0; width:100%; height:100%; border:0; }
 </style>
 </head>
 <body>
-<div id="wrap">
-  <iframe
-    src="https://www.youtube.com/embed/R2oGAwJUMl8?autoplay=1&mute=1&controls=0&rel=0&playsinline=1"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allow="autoplay; encrypted-media; fullscreen"
-    allowfullscreen></iframe>
-</div>
-<script>
-  function fit() {
-    var w = document.getElementById('wrap');
-    var s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
-    var x = (window.innerWidth - 1920 * s) / 2;
-    var y = (window.innerHeight - 1080 * s) / 2;
+<iframe
+  src="https://www.youtube.com/embed/_azWFPdn_7s?autoplay=1&controls=0&rel=0&modestbranding=1&playsinline=1"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allow="autoplay; encrypted-media; fullscreen"
+  allowfullscreen></iframe>
+</body>
+</html>
